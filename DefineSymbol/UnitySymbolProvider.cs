@@ -7,9 +7,10 @@ namespace Builder.DefineSymbol
     {
         private BuildTargetGroup _buildGroup;
 
-        public UnitySymbolProvider(BuildTargetGroup targetGroup)
+        public UnitySymbolProvider()
         {
-            _buildGroup = targetGroup;
+            // get build group: by platform
+            _buildGroup = BuildPipeline.GetBuildTargetGroup(EditorUserBuildSettings.activeBuildTarget);
         }
 
         #region implement ISymbolProvider
