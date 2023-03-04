@@ -3,6 +3,6 @@ namespace Builder.DefineSymbol
     public interface ISymbolProvider
     {
         string GetCurrentSymbols();
-        void SetCurrentSymbols(string szSymbols);
+        void SetCurrentSymbols(string inSymbols);
     }
 }
