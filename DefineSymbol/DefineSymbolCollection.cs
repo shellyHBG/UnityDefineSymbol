@@ -7,42 +7,42 @@ namespace Builder.DefineSymbol
     public class DefineSymbolCollection
     {
         private List<string> _listSymbols;
-        ISymbolProvider _iSymbolProvider;
+        private ISymbolProvider _iSymbolProvider;
 
-        public DefineSymbolCollection(ISymbolProvider symbolProvider)
+        public DefineSymbolCollection(ISymbolProvider inSymbolProvider)
         {
-            _iSymbolProvider = symbolProvider;
-            loadFromString(symbolProvider.GetCurrentSymbols());
+            _iSymbolProvider = inSymbolProvider;
+            LoadFromString(inSymbolProvider.GetCurrentSymbols());
         }
 
-        public void Add(string symbol)
+        public void Add(string inSymbol)
         {
-            if (!_listSymbols.Contains(symbol))
+            if (!_listSymbols.Contains(inSymbol))
             {
-                _listSymbols.Add(symbol);
-                saveSymbols();
+                _listSymbols.Add(inSymbol);
+                SaveSymbols();
             }
         }
 
-        public void Remove(string symbol)
+        public void Remove(string inSymbol)
         {
-            _listSymbols.RemoveAll(x => x == symbol);
-            saveSymbols();
+            _listSymbols.RemoveAll(x => x == inSymbol);
+            SaveSymbols();
         }
 
-        private void loadFromString(string raw)
+        private void LoadFromString(string inRaw)
         {
-            _listSymbols = raw.Split(';')
+            _listSymbols = inRaw.Split(';')
                                     .Where(x => !string.IsNullOrEmpty(x))
                                     .Distinct()
                                     .ToList();
         }
 
-        private void saveSymbols()
+        private void SaveSymbols()
         {
-            string szSymbols = string.Join(";", _listSymbols);
-            Debug.Log($"Save define symbols: {szSymbols}");
-            _iSymbolProvider.SetCurrentSymbols(szSymbols);
+            string symbols = string.Join(";", _listSymbols);
+            Debug.Log($"Save define symbols: {symbols}");
+            _iSymbolProvider.SetCurrentSymbols(symbols);
         }
     }
 }
