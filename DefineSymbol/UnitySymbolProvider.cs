@@ -23,13 +23,13 @@ namespace Builder.DefineSymbol
             return PlayerSettings.GetScriptingDefineSymbolsForGroup(_buildGroup);
         }
 
-        void ISymbolProvider.SetCurrentSymbols(string szSymbols)
+        void ISymbolProvider.SetCurrentSymbols(string inSymbols)
         {
             if (_buildGroup == BuildTargetGroup.Unknown)
             {
                 throw new NotSupportedException($"Unknown buildGroup={_buildGroup}");
             }
-            PlayerSettings.SetScriptingDefineSymbolsForGroup(_buildGroup, szSymbols);
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(_buildGroup, inSymbols);
         }
         #endregion
     }
